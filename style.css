@@ -5,6 +5,7 @@
 }
 
 body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-image: linear-gradient(rgb(54, 53, 53), rgb(0, 0, 0));
     color: white;
   }
@@ -78,14 +79,14 @@ body {
 }
 
 .button {
-    border-radius: 0.75em;
+    border-radius: 0.25rem;
     color: white;
 }
 
 .on {
     grid-column: 4;
     grid-row: 1;
-    background: rgb(20, 20, 20);
+    background: rgb(173, 18, 18);
 }
 
 .clear {
