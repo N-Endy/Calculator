@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        /* grid-template-areas: 
+            ". . . . on/off"
+            "seven eight nine clear del"
+            "four five six divide times"
+            "one two three minus equal"
+            "zero zero2 dot plus equal"; */
+
+        
+        
+        width: 60%;
+        margin: 0 auto;
+        border: 1px solid red;
+    }
+
+    .on {
+        grid-column: 5;
+        grid-row: 1;
+    }
+    .one {
+        grid-column: 1;
+        grid-row: 4 / 5;
+    }
+    .two {
+        grid-column: 2 / 3;
+        grid-row: 4 / 5;
+    }
+    .three {
+        grid-column: 3 / 4;
+        grid-row: 4 / 5;
+    }
+    .four {
+        grid-column: 1;
+        grid-row: 3 / 4;
+    }
+    .five {
+        grid-column: 2;
+        grid-row: 3 / 4;
+    }
+    .six {
+        grid-column: 3;
+        grid-row: 3 / 4;
+    }
+    .seven {
+        grid-column: 1;
+        grid-row: 2 / 3;
+    }
+    .eight {
+        grid-column: 2;
+        grid-row: 2 / 3;
+    }
+    .nine {
+        grid-column: 3;
+        grid-row: 2 / 3;
+    }
+    .zero {
+        grid-column: 1;
+        grid-row: 5;
+    }
+    .zero2 {
+        grid-column: 2;
+        grid-row: 5;
+    }
+    .dot {
+        grid-column: 3;
+        grid-row: 5;
+    }
+    .equal {
+        grid-column: 5;
+        grid-row: 4 / 6;
+    }
+    .add {
+        grid-column: 4;
+        grid-row: 5;
+    }
+    .minus {
+        grid-column: 4;
+        grid-row: 4;
+    }
+    .divide {
+        grid-column: 4;
+        grid-row: 3;
+    }
+    .multiply {
+        grid-column: 5;
+        grid-row: 3;
+    }
+    .clear {
+        grid-column: 4;
+        grid-row: 2;
+    }
+    .del {
+        grid-column: 5;
+        grid-row: 2;
+    }
+</style>
+
+
+<body>
+    
+    <div class="buttons">
+        <button class="one">1</button>
+        <button class="two">2</button>
+        <button class="three">3</button>
+        <button class="four">4</button>
+        <button class="five">5</button>
+        <button class="six">6</button>
+        <button class="seven">7</button>
+        <button class="eight">8</button>
+        <button class="nine">9</button>
+        <button class="zero">0</button>
+        <button class="zero2">00</button>
+        <button class="on">On/Off</button>
+        <button class="clear">clear</button>
+        <button class="del">del</button>
+        <button class="divide">/</button>
+        <button class="multiply">*</button>
+        <button class="minus">-</button>
+        <button class="add">+</button>
+        <button class="dot">.</button>
+        <button class="equal">=</button>
+    </div>
+</body>
+</html>
