@@ -4,33 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Calculator</title>
 </head>
 <body>
     <div class="container">
-        <div class="display"></div>
+        <!-- Network Bar -->
+        <nav class="nav">
+            <p>11:23</p>
+            <ul>
+                <li><i class="fas fa-signal"></i></li>
+                <li><i class="fas fa-wifi"></i></li>
+                <li><i class="fas fa-battery-full"></i></li>
+            </ul>
+        </nav>
+
+        <!-- Display -->
+        <div class="display">
+            <div class="problem">
+                <p>1 + 1</p>
+                <p>2 * 3</p>
+            </div>
+            <div class="solution">
+                <p>= 6</p>
+            </div>
+        </div>
+
+        <!-- Buttons -->
         <div class="buttons">
-            <button class="one">1</button>
-            <button class="two">2</button>
-            <button class="three">3</button>
-            <button class="four">4</button>
-            <button class="five">5</button>
-            <button class="six">6</button>
-            <button class="seven">7</button>
-            <button class="eight">8</button>
-            <button class="nine">9</button>
-            <button class="zero">0</button>
-            <button class="zero2">00</button>
-            <button class="on">On/Off</button>
-            <button class="clear">clear</button>
-            <button class="del">del</button>
-            <button class="divide">/</button>
-            <button class="multiply">*</button>
-            <button class="minus">-</button>
-            <button class="add">+</button>
-            <button class="dot">.</button>
-            <button class="equal">=</button>
+            <div class="toggle">
+                <button class="button big"></button>
+                <button class="button small"></button>
+            </div>
+            <button class="button on">On/Off</button>
+            <button class="button clear">C</button>
+            <button class="button open-b">(</button>
+            <button class="button close-b">)</button>
+            <button class="button times">*</button>
+            <button class="button power">^</button>
+            <button class="button percent">%</button>
+            <button class="button random">R</button>
+            <button class="button divide">/</button>
+            <button class="button seven">7</button>
+            <button class="button eight">8</button>
+            <button class="button nine">9</button>
+            <button class="button minus">-</button>
+            <button class="button four">4</button>
+            <button class="button five">5</button>
+            <button class="button six">6</button>
+            <button class="button plus">+</button>
+            <button class="button one">1</button>
+            <button class="button two">2</button>
+            <button class="button three">3</button>
+            <button class="button dot">.</button>
+            <button class="button zero">0</button>
+            <button class="button equal">=</button>
+            <button class="button delete"><i class="fas fa-backspace"></i></button>
         </div>
     </div>
 
