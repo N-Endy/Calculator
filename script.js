@@ -30,10 +30,17 @@ const numbers = document.querySelectorAll('.number');
 const problem = document.querySelector('.problem');
 const solution = document.querySelector('.solution');
 
+
 // Display Numbers On Screen
-numbers.forEach(number => {
-    number.addEventListener('click', () => {
-        let num = number.textContent;
-        problem.innerHTML = `<p>${num}</p>`
+function showNumbers() {
+    let num = "";
+    numbers.forEach(number => {
+        number.addEventListener('click', () => {
+            num += number.textContent.toString();
+            problem.innerHTML = `<p>${Number(num)}</p>`
+            return problem.textContent;
+        });
     });
-})
+}
+
+showNumbers();
