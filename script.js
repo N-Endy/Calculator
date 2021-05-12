@@ -35,24 +35,42 @@ time.textContent = `${hour}:${minute}`
 // Cache DOM of Numbers and Screens
 const numbers = document.querySelectorAll('.number');
 const problem = document.querySelector('.problem');
+const problemScreen = problem.textContent;
 const solution = document.querySelector('.solution');
-let num = "";
+let firstNum = "";
+let secondNum = "";
 
 // Display Numbers On Screen
-function showNumbers() {
+function showFirstNumbers() {
     
     numbers.forEach(number => {
         number.addEventListener('click', () => {
-            num += number.textContent.toString();
-            problem.textContent = Number(num);
-            getNumber(problem.textContent);
+            firstNum = number.textContent.toString();
+            problemScreen = Number(firstNum);
+            getFirstNumbers(problem.textContent);
         });
     });
 }
-showNumbers();
+showFirstNumbers();
+
+function showSecondNumbers() {
+    
+    numbers.forEach(number => {
+        number.addEventListener('click', () => {
+            secondNum = number.textContent.toString();
+            problem.textContent += Number(secondNum);
+            getSecondNumbers(problem.textContent);
+        });
+    });
+}
+showSecondNumbers();
 
 // Function get digit
-function getNumber(num) {
+function getFirstNumbers(num) {
+    return num;
+}
+
+function getSecondNumbers(num) {
     return num;
 }
 
@@ -79,26 +97,26 @@ const clear = document.querySelector('.clear');
 function clearSCreen() {
     problem.innerText = 0;
     solution.textContent = 0;
-    num = "";
+    firstNum = "";
 }
 
 clear.addEventListener('click', () => {
     clearSCreen();
 })
 
-// Function Delete
-const del = document.querySelector('.delete');
+// // Function Delete
+// const del = document.querySelector('.delete');
 
-function deleteNumber(digit) {
-    digit.toString();
-    let array = [...digit];
-    array.pop();
-}
+// function deleteNumber(digit) {
+//     digit.toString();
+//     let array = [...digit];
+//     array.pop();
+// }
 
-del.addEventListener('click', () => {
-    let num = getNumber();
-    deleteNumber(num);
-})
+// del.addEventListener('click', () => {
+//     let num = getNumber();
+//     deleteNumber(num);
+// })
 
 
 
@@ -123,7 +141,8 @@ function enableButtons() {
 const on = document.querySelector('.on');
 function onAndOff() {
     on.classList.toggle("green");
-    num = "";
+    firstNum = "";
+    secondNum = "";
 }
 
 on.addEventListener('click', () => {

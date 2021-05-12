@@ -52,7 +52,7 @@ body {
 
 /* Display */
 .container .display {
-    height: 25%;
+    height: 20%;
     width: 100%;
 }
 
@@ -75,7 +75,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     grid-gap: 0.5rem;
-    height: 80%;
+    height: 70%;
     width: 100%;
     padding: 1rem;
 }
