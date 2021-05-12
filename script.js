@@ -18,6 +18,13 @@ function operate(operator, a, b) {
     operator(a, b);
 }
 
+// Set time on Calculator
+const time = document.querySelector('.time');
+let hour = new Date().getHours()
+let minute = new Date().getMinutes();
+time.textContent = `${hour}:${minute}`
+
+
 // Numbers
 const numbers = document.querySelectorAll('.number');
 const problem = document.querySelector('.problem');
@@ -26,6 +33,7 @@ const solution = document.querySelector('.solution');
 // Display Numbers On Screen
 numbers.forEach(number => {
     number.addEventListener('click', () => {
-        problem.innerHTML = `<p>${number.textContent}</p>`
+        let num = number.textContent;
+        problem.innerHTML = `<p>${num}</p>`
     });
 })
