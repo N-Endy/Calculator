@@ -129,3 +129,10 @@ on.addEventListener('click', () => {
         }
     
 })
+
+window.onload = () => {
+    document.querySelectorAll('.buttons')
+    buttons.forEach(button => {
+        button.disabled = 'true';
+    })
+}
