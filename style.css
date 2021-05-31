@@ -57,7 +57,7 @@ body {
 }
 
 .container .display > * {
-    height: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -65,7 +65,7 @@ body {
     color: rgb(158, 153, 153);
 }
 
-.container .display .solution {
+.container .display .problem {
     font-size: 2em;
 }
 

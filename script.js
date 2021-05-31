@@ -40,7 +40,7 @@ const operators = document.querySelectorAll('.operator');
 const dot = document.querySelector('.dot');
 const equal = document.querySelector('.equal');
 let firstValue;
-let SeconValue;
+let secondValue;
 
 
 // Display Numbers On Screen
@@ -50,7 +50,12 @@ function displayNumbers() {
             if(display.textContent === '0') {
                 display.textContent = number.textContent;
             } else {
-                display.textContent = display.textContent + number.textContent;
+                display.textContent += number.textContent;
+            }
+
+            if (number.textContent === ".") {
+                console.log("Got it")
+                number.disabled = true;
             }
             return display.textContent;
         })
@@ -59,20 +64,26 @@ function displayNumbers() {
 displayNumbers();
 
 function getFirstValue(value) {
-    console.log(value);
+    firstValue = parseInt(value)
+    console.log(firstValue)
+    return firstValue;
 }
+
+function getSecondValue() {
+    secondValue = parseInt(display.textContent);
+    console.log(secondValue)
+}
+getSecondValue()
 
 
 function getOperator() {
     operators.forEach(operator => {
         operator.addEventListener('click', () => {
-            firstValue = display.textContent;
-            getFirstValue(firstValue);
+            first = display.textContent;
+            getFirstValue(first);
             
-            display.textContent = "";
-            
-            display.textContent += " " + operator.textContent + " ";
-            return operator.className
+            display.textContent = ''
+            return operator.className;
         })
     })
 }
@@ -83,7 +94,7 @@ getOperator();
 const clear = document.querySelector('.clear');
 function clearSCreen() {
     display.innerText = '0';
-    solution.textContent = 0;
+    // solution.textContent = 0;
 }
 
 clear.addEventListener('click', () => {
@@ -121,12 +132,12 @@ on.addEventListener('click', () => {
         if(name !== "green") {
             disableButtons();
             display.innerText = "";
-            solution.textContent = "";
+            // solution.textContent = "";
             
         } else {
             enableButtons();
             display.innerText = '0';
-            solution.textContent = 0;
+            // solution.textContent = 0;
         }
     
 })
