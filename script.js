@@ -36,32 +36,48 @@ time.textContent = `${hour}:${minute}`
 const numbers = document.querySelectorAll('.number');
 const display = document.querySelector('.problem');
 const solution = document.querySelector('.solution');
+const operators = document.querySelectorAll('.operator');
+const dot = document.querySelector('.dot');
+const equal = document.querySelector('.equal');
+let firstValue;
+let SeconValue;
+
 
 // Display Numbers On Screen
-function displayValue() {
+function displayNumbers() {
     numbers.forEach(number => {
         number.addEventListener('click', () => {
-            const value = display.textContent;
-
-            if (display.textContent == '0') {
+            if(display.textContent === '0') {
                 display.textContent = number.textContent;
             } else {
-                display.textContent = value + number.textContent;
+                display.textContent = display.textContent + number.textContent;
             }
+            return display.textContent;
         })
     })
 }
-displayValue();
+displayNumbers();
 
+function getFirstValue(value) {
+    console.log(value);
+}
 
-
-// Operator Dom and Function
-const operators = document.querySelectorAll('.operator');
 
 function getOperator() {
-    
+    operators.forEach(operator => {
+        operator.addEventListener('click', () => {
+            firstValue = display.textContent;
+            getFirstValue(firstValue);
+            
+            display.textContent = "";
+            
+            display.textContent += " " + operator.textContent + " ";
+            return operator.className
+        })
+    })
 }
 getOperator();
+
 
 // Function Clear Screen
 const clear = document.querySelector('.clear');
@@ -73,21 +89,6 @@ function clearSCreen() {
 clear.addEventListener('click', () => {
     clearSCreen();
 })
-
-// // Function Delete
-// const del = document.querySelector('.delete');
-
-// function deleteNumber(digit) {
-//     digit.toString();
-//     let array = [...digit];
-//     array.pop();
-// }
-
-// del.addEventListener('click', () => {
-//     let num = getNumber();
-//     deleteNumber(num);
-// })
-
 
 
 // Disable Buttons
@@ -119,7 +120,7 @@ on.addEventListener('click', () => {
     let name = onClass.slice(onClass.length -5);
         if(name !== "green") {
             disableButtons();
-            problem.innerText = "";
+            display.innerText = "";
             solution.textContent = "";
             
         } else {
