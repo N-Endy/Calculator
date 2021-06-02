@@ -47,6 +47,7 @@ let secondValue;
 function displayNumbers() {
     numbers.forEach(number => {
         number.addEventListener('click', () => {
+            enableOperators();
             if(display.textContent === '0') {
                 display.textContent = number.textContent;
             } else {
@@ -55,7 +56,7 @@ function displayNumbers() {
 
             if (number.textContent === ".") {
                 console.log("Got it")
-                number.disabled = true;
+                disableDecimal();
             }
             return display.textContent;
         })
@@ -79,6 +80,8 @@ getSecondValue()
 function getOperator() {
     operators.forEach(operator => {
         operator.addEventListener('click', () => {
+            disableOperators();
+            enableDecimal();
             first = display.textContent;
             getFirstValue(first);
             
@@ -116,6 +119,24 @@ function enableButtons() {
     buttons.forEach(button => {
         button.disabled = false;
     })
+}
+
+function disableOperators() {
+    operators.forEach(operator => operator.classList.add('disabled'))
+}
+
+function enableOperators() {
+    operators.forEach(operator => operator.classList.remove('disabled'))
+}
+
+function disableDecimal() {
+    let decimal = document.querySelector('.dot');
+    decimal.classList.add('disabled');
+}
+
+function enableDecimal() {
+    let decimal = document.querySelector('.dot');
+    decimal.classList.remove('disabled');
 }
 
 

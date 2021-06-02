@@ -234,3 +234,7 @@ body {
 .green {
     background: rgb(14, 177, 14);
 }
+
+.disabled {
+    pointer-events: none;
+}
