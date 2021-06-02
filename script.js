@@ -105,7 +105,7 @@ clear.addEventListener('click', () => {
 })
 
 
-// Disable Buttons
+// Enable and disable Functions
 const buttons = document.querySelectorAll('.button');
 
 function disableButtons() {
@@ -114,7 +114,6 @@ function disableButtons() {
     })
 }
 
-// Enable Buttons
 function enableButtons() {
     buttons.forEach(button => {
         button.disabled = false;
@@ -163,9 +162,25 @@ on.addEventListener('click', () => {
     
 })
 
+// Disable all buttons on load. Turn on calc
 window.onload = () => {
     document.querySelectorAll('.buttons')
     buttons.forEach(button => {
         button.disabled = 'true';
     })
 }
+
+// Delete numbers function
+function deleteNum() {
+    let array = display.textContent.split('')
+    let result = array.slice(0, array.length - 1);
+    if (Array.isArray(result) && !result.length) {
+        display.textContent = '0'
+    } else {
+        display.textContent = result.join('')
+    }
+}
+
+document.querySelector('.delete').addEventListener('click', () => {
+    deleteNum();
+})
