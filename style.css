@@ -18,7 +18,7 @@ body {
     align-items: center;
     margin: 3rem auto;
     height: 80vh;
-    max-width: 280px;
+    max-width: 320px;
     border-radius: 0.75rem;
     background-image: linear-gradient(rgb(73, 71, 71), rgb(10, 10, 10));
 }

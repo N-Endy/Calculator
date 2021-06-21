@@ -80,7 +80,7 @@ function getOperator() {
         operator.addEventListener('click', () => {
             disableOperators();
             enableDecimal();
-            firstValue = parseInt(display.textContent);
+            firstValue = parseFloat(display.textContent);
             display.textContent = "";
 
             if (
@@ -100,14 +100,11 @@ getOperator();
 
 function equalTo() {
     equal.addEventListener('click', () => {
-        secondValue = parseInt(display.textContent);
+        secondValue = parseFloat(display.textContent);
         operate(operationKey, firstValue, secondValue);
     })
 }
 equalTo()
-
-
-
 
 
 
