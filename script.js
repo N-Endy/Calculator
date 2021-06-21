@@ -21,16 +21,16 @@ function power(a, b) {
 
 function operate(operator, a, b) {
     operator = operationKey;
-    if (operator === add) {
-        display.textContent = add(a,b);
+    if (operator == 'add') {
+        return add(a,b);
     } else if (operator == 'subtract') {
-        display.textContent = subtract(a,b);
+        return subtract(a,b);
     } else if (operator == 'multiply') {
-        display.textContent = multiply(a,b);
+        return multiply(a,b);
     } else if (operator == 'divide') {
-        display.textContent = divide(a,b);
+        return divide(a,b);
     } else {
-        display.textContent = power(a,b);
+        return power(a,b);
     }
 }
 
@@ -92,6 +92,7 @@ function getOperator() {
             } else {
                 operationKey = "power";
             }
+            return operationKey;
         })
     })
 }
@@ -100,7 +101,7 @@ getOperator();
 function equalTo() {
     equal.addEventListener('click', () => {
         secondValue = parseInt(display.textContent);
-        operate(getOperator, firstValue, secondValue);
+        display.textContent = operate(getOperator, firstValue, secondValue);
     })
 }
 equalTo()
@@ -205,6 +206,14 @@ function deleteNum() {
     } else {
         display.textContent = result.join('')
     }
+
+    if (display.textContent.includes('.')) {
+        disableDecimal();
+    } else {
+        enableDecimal();
+    }
+
+    
 }
 
 document.querySelector('.delete').addEventListener('click', () => {
