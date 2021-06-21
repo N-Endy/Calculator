@@ -19,19 +19,21 @@ function power(a, b) {
     return Math.pow(a, b);
 }
 
-function operate(operator, a, b) {
-    operator = operationKey;
-    if (operator == 'add') {
-        return add(a,b);
-    } else if (operator == 'subtract') {
-        return subtract(a,b);
-    } else if (operator == 'multiply') {
-        return multiply(a,b);
-    } else if (operator == 'divide') {
-        return divide(a,b);
-    } else {
-        return power(a,b);
-    }
+function operate(operationKey, a, b) {
+    let result = '';
+    if (operationKey === 'plus') {
+            result = add(a,b);
+      } else if (operationKey === 'minus') {
+            result = subtract(a,b);
+      } else if (operationKey === 'times') {
+            result = multiply(a,b);
+      } else if (operationKey === 'divide') {
+            result = divide(a,b);
+      } else if (operationKey === 'power') {
+            result = power(a,b);
+      }
+
+      display.textContent = result;
 }
 
 
@@ -81,18 +83,16 @@ function getOperator() {
             firstValue = parseInt(display.textContent);
             display.textContent = "";
 
-            if (operator.id == 'plus') {
-                operationKey = 'plus';
-            } else if (operator.id == 'subtract'){
-                operationKey = "subtract";
-            } else if (operator.id == 'multiply') {
-                operationKey = "multiply";
-            } else if (operator.id == 'divide') {
-                operationKey = "divide";
-            } else {
-                operationKey = "power";
-            }
-            return operationKey;
+            if (
+                operator.id === 'plus' ||
+                operator.id === 'minus' ||
+                operator.id === 'times' ||
+                operator.id === 'divide' ||
+                operator.id === 'power'
+              ) {
+                    operationKey = operator.id;
+              }
+              
         })
     })
 }
@@ -101,7 +101,7 @@ getOperator();
 function equalTo() {
     equal.addEventListener('click', () => {
         secondValue = parseInt(display.textContent);
-        display.textContent = operate(getOperator, firstValue, secondValue);
+        operate(operationKey, firstValue, secondValue);
     })
 }
 equalTo()
