@@ -20,16 +20,27 @@ function power(a, b) {
 }
 
 function operate(operator, a, b) {
-    operator(a, b);
+    operator = operationKey;
+    if (operator === add) {
+        display.textContent = add(a,b);
+    } else if (operator == 'subtract') {
+        display.textContent = subtract(a,b);
+    } else if (operator == 'multiply') {
+        display.textContent = multiply(a,b);
+    } else if (operator == 'divide') {
+        display.textContent = divide(a,b);
+    } else {
+        display.textContent = power(a,b);
+    }
 }
 
 
 
 // Set time on Calculator
 const time = document.querySelector('.time');
-let hour = new Date().getHours()
+let hour = new Date().getHours();
 let minute = new Date().getMinutes();
-time.textContent = `${hour}:${minute}`
+time.textContent = `${hour}:${minute}`;
 
 
 // Cache DOM of Numbers and Screens
@@ -39,8 +50,7 @@ const solution = document.querySelector('.solution');
 const operators = document.querySelectorAll('.operator');
 const dot = document.querySelector('.dot');
 const equal = document.querySelector('.equal');
-let firstValue;
-let secondValue;
+let firstValue, secondValue;
 
 
 // Display Numbers On Screen
@@ -55,26 +65,12 @@ function displayNumbers() {
             }
 
             if (number.textContent === ".") {
-                console.log("Got it")
                 disableDecimal();
             }
-            return display.textContent;
         })
     })
 }
 displayNumbers();
-
-function getFirstValue(value) {
-    firstValue = parseInt(value)
-    console.log(firstValue)
-    return firstValue;
-}
-
-function getSecondValue() {
-    secondValue = parseInt(display.textContent);
-    console.log(secondValue)
-}
-getSecondValue()
 
 
 function getOperator() {
@@ -82,15 +78,43 @@ function getOperator() {
         operator.addEventListener('click', () => {
             disableOperators();
             enableDecimal();
-            first = display.textContent;
-            getFirstValue(first);
-            
-            display.textContent = ''
-            return operator.className;
+            firstValue = parseInt(display.textContent);
+            display.textContent = "";
+
+            if (operator.id == 'plus') {
+                operationKey = 'plus';
+            } else if (operator.id == 'subtract'){
+                operationKey = "subtract";
+            } else if (operator.id == 'multiply') {
+                operationKey = "multiply";
+            } else if (operator.id == 'divide') {
+                operationKey = "divide";
+            } else {
+                operationKey = "power";
+            }
         })
     })
 }
 getOperator();
+
+function equalTo() {
+    equal.addEventListener('click', () => {
+        secondValue = parseInt(display.textContent);
+        operate(getOperator, firstValue, secondValue);
+    })
+}
+equalTo()
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Function Clear Screen
@@ -168,10 +192,12 @@ window.onload = () => {
     buttons.forEach(button => {
         button.disabled = 'true';
     })
+    disableOperators();
 }
 
 // Delete numbers function
 function deleteNum() {
+    // Changes display to array and removes last character. It joins back to string and displays on screen
     let array = display.textContent.split('')
     let result = array.slice(0, array.length - 1);
     if (Array.isArray(result) && !result.length) {
