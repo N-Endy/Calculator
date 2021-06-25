@@ -81,7 +81,7 @@ function getOperator() {
             disableOperators();
             enableDecimal();
             firstValue = parseFloat(display.textContent);
-            display.textContent = "";
+            display.textContent = "0";
 
             if (
                 operator.id === 'plus' ||
