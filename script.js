@@ -19,21 +19,19 @@ function power(a, b) {
     return Math.pow(a, b);
 }
 
-function operate(operationKey, a, b) {
+function operate(key, a, b) {
     let result = '';
-    if (operationKey === 'plus') {
-            result = add(a,b);
-      } else if (operationKey === 'minus') {
-            result = subtract(a,b);
-      } else if (operationKey === 'times') {
-            result = multiply(a,b);
-      } else if (operationKey === 'divide') {
-            result = divide(a,b);
-      } else if (operationKey === 'power') {
-            result = power(a,b);
-      }
 
-      display.textContent = result;
+    key === 'plus' ? result = add(a,b) :
+    key === 'minus' ? result = subtract(a,b) :
+    key === 'times' ? result = multiply(a,b) :
+    key === 'divide' ? result = divide(a,b) : result = power(a,b);
+
+    display.textContent = result;
+
+    if (key === 'divide' && b == 0) {
+        display.textContent = 'Really?! 🤨';
+    }
 }
 
 
@@ -42,7 +40,7 @@ function operate(operationKey, a, b) {
 const time = document.querySelector('.time');
 let hour = new Date().getHours();
 let minute = new Date().getMinutes();
-time.textContent = `${hour}:${minute}`;
+time.innerText = `${hour}:${minute}`;
 
 
 // Cache DOM of Numbers and Screens
@@ -52,13 +50,15 @@ const solution = document.querySelector('.solution');
 const operators = document.querySelectorAll('.operator');
 const dot = document.querySelector('.dot');
 const equal = document.querySelector('.equal');
-let firstValue, secondValue;
+let screen = display.textContent;
+let firstValue, secondValue, operationKey, previousKey;
 
 
 // Display Numbers On Screen
 function displayNumbers() {
     numbers.forEach(number => {
         number.addEventListener('click', () => {
+            previousKey = 'number';
             enableOperators();
             if(display.textContent === '0') {
                 display.textContent = number.textContent;
@@ -66,33 +66,34 @@ function displayNumbers() {
                 display.textContent += number.textContent;
             }
 
-            if (number.textContent === ".") {
-                disableDecimal();
-            }
+            display.textContent.includes('.') ? disableDecimal() : enableDecimal();
+            
         })
     })
 }
 displayNumbers();
 
-
+let clicked = false;
 function getOperator() {
     operators.forEach(operator => {
         operator.addEventListener('click', () => {
+            previousKey = 'operator';
             disableOperators();
             enableDecimal();
             firstValue = parseFloat(display.textContent);
-            display.textContent = "0";
+            console.log(firstValue)
+            display.textContent = '0';
 
-            if (
-                operator.id === 'plus' ||
-                operator.id === 'minus' ||
-                operator.id === 'times' ||
-                operator.id === 'divide' ||
-                operator.id === 'power'
-              ) {
-                    operationKey = operator.id;
-              }
-              
+            operationKey = operator.id;
+
+
+            clicked = true;
+            if (firstValue && clicked === true && previousKey === 'operator') {
+                console.log(operationKey);
+                secondValue = parseFloat(display.textContent);
+                display.textContent = operate(operationKey, firstValue, secondValue);
+                console.log(firstValue, previousKey, secondValue);
+            }
         })
     })
 }
@@ -100,16 +101,32 @@ getOperator();
 
 function equalTo() {
     equal.addEventListener('click', () => {
+        previousKey = 'equal';
         secondValue = parseFloat(display.textContent);
+        console.log(secondValue)
         operate(operationKey, firstValue, secondValue);
+        secondValue = undefined;
     })
 }
 equalTo()
 
 
 
-
-
+// let clicked = false;
+// function pleaseWork() {
+//     operators.forEach(ele => {
+//         ele.addEventListener('click', () => {
+//             clicked = true;
+//             if (firstValue && clicked === true && previousKey == 'operator') {
+//                 secondValue = parseFloat(display.textContent);
+//                 console.log(firstValue, previousKey, secondValue)
+//                 operate(operationKey, firstValue, secondValue);
+//             }
+//             console.log(firstValue, previousKey, secondValue)
+//         })
+//     })
+// }
+// pleaseWork();
 
 
 
@@ -124,6 +141,7 @@ function clearSCreen() {
 
 clear.addEventListener('click', () => {
     clearSCreen();
+    enableDecimal();
 })
 
 
@@ -204,12 +222,7 @@ function deleteNum() {
         display.textContent = result.join('')
     }
 
-    if (display.textContent.includes('.')) {
-        disableDecimal();
-    } else {
-        enableDecimal();
-    }
-
+    display.textContent.includes('.') ? disableDecimal() : enableDecimal();
     
 }
 
