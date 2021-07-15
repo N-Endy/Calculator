@@ -56,8 +56,10 @@ let firstValue, secondValue, operationKey, previousKey;
 
 // Display Numbers On Screen
 function displayNumbers() {
+    // Loop through the node list of numbers
     numbers.forEach(number => {
         number.addEventListener('click', () => {
+            // Know which key type was clicked
             previousKey = 'number';
             enableOperators();
             if(display.textContent === '0') {
@@ -73,22 +75,26 @@ function displayNumbers() {
 }
 displayNumbers();
 
-let clicked = false;
+
 function getOperator() {
     operators.forEach(operator => {
         operator.addEventListener('click', () => {
             previousKey = 'operator';
+            // Disable operator keys to prevent continous clicking
             disableOperators();
             enableDecimal();
+            // Sets and converts first value
             firstValue = parseFloat(display.textContent);
             console.log(firstValue)
             display.textContent = '0';
 
+            // Gets the type of operator key clicked
             operationKey = operator.id;
 
 
-            clicked = true;
-            if (firstValue && clicked === true && previousKey === 'operator') {
+            // For chain calculation. Checks if first value and previous key clicked is an operator key
+            // It assignes the display value as second value
+            if (firstValue && operator && previousKey === 'operator') {
                 console.log(operationKey);
                 secondValue = parseFloat(display.textContent);
                 display.textContent = operate(operationKey, firstValue, secondValue);
@@ -99,40 +105,23 @@ function getOperator() {
 }
 getOperator();
 
+
 function equalTo() {
     equal.addEventListener('click', () => {
         previousKey = 'equal';
+        // Sets second value to displayed number
         secondValue = parseFloat(display.textContent);
         console.log(secondValue)
+        // Call calculate function
         operate(operationKey, firstValue, secondValue);
-        secondValue = undefined;
     })
 }
 equalTo()
 
 
 
-// let clicked = false;
-// function pleaseWork() {
-//     operators.forEach(ele => {
-//         ele.addEventListener('click', () => {
-//             clicked = true;
-//             if (firstValue && clicked === true && previousKey == 'operator') {
-//                 secondValue = parseFloat(display.textContent);
-//                 console.log(firstValue, previousKey, secondValue)
-//                 operate(operationKey, firstValue, secondValue);
-//             }
-//             console.log(firstValue, previousKey, secondValue)
-//         })
-//     })
-// }
-// pleaseWork();
-
-
-
-
-
 // Function Clear Screen
+// Removes all value from screen
 const clear = document.querySelector('.clear');
 function clearSCreen() {
     display.innerText = '0';
@@ -143,6 +132,8 @@ clear.addEventListener('click', () => {
     clearSCreen();
     enableDecimal();
 })
+// *****************************************
+
 
 
 // Enable and disable Functions
@@ -159,7 +150,12 @@ function enableButtons() {
         button.disabled = false;
     })
 }
+// *****************************************
 
+
+
+
+// Disable operators function
 function disableOperators() {
     operators.forEach(operator => operator.classList.add('disabled'))
 }
@@ -167,7 +163,11 @@ function disableOperators() {
 function enableOperators() {
     operators.forEach(operator => operator.classList.remove('disabled'))
 }
+// ********************************************
 
+
+
+// Disable decimal function
 function disableDecimal() {
     let decimal = document.querySelector('.dot');
     decimal.classList.add('disabled');
@@ -177,6 +177,9 @@ function enableDecimal() {
     let decimal = document.querySelector('.dot');
     decimal.classList.remove('disabled');
 }
+// ********************************************
+
+
 
 
 // On and Off
@@ -201,6 +204,10 @@ on.addEventListener('click', () => {
         }
     
 })
+// **********************************************
+
+
+
 
 // Disable all buttons on load. Turn on calc
 window.onload = () => {
@@ -210,6 +217,9 @@ window.onload = () => {
     })
     disableOperators();
 }
+// **********************************************
+
+
 
 // Delete numbers function
 function deleteNum() {
@@ -222,6 +232,7 @@ function deleteNum() {
         display.textContent = result.join('')
     }
 
+    // Checks for decimal in display
     display.textContent.includes('.') ? disableDecimal() : enableDecimal();
     
 }
@@ -229,3 +240,4 @@ function deleteNum() {
 document.querySelector('.delete').addEventListener('click', () => {
     deleteNum();
 })
+// **************************************************8
