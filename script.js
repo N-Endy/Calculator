@@ -22,10 +22,10 @@ function power(a, b) {
 function operate(key, a, b) {
     let result = '';
 
-    key === 'plus' ? result = add(a,b) :
-    key === 'minus' ? result = subtract(a,b) :
-    key === 'times' ? result = multiply(a,b) :
-    key === 'divide' ? result = divide(a,b) : result = power(a,b);
+    key == 'plus' ? result = add(a,b) :
+    key == 'minus' ? result = subtract(a,b) :
+    key == 'times' ? result = multiply(a,b) :
+    key == 'divide' ? result = divide(a,b) : result = power(a,b);
 
     display.textContent = result;
 
